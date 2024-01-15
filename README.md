@@ -13,3 +13,6 @@ Edit Button Section:
 For each displayed data item, an "Edit" button is provided. Clicking on this button will lead users to the respective Edit Page, allowing them to modify the details of the selected item.
 ![image](https://github.com/neerajkumarroy/All_React_Project_With_Nodejs_And_mongoDB/assets/148259510/282ff8d4-4366-4747-bc3d-e744bfa9e44b)
 
+Delete Button Section:
+
+Adjacent to each displayed data item, a "Delete" button is available. To remove a specific item, simply click on the "Delete" button, initiating the deletion process.
