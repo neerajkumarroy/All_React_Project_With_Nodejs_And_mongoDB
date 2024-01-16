@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { MdClose } from "react-icons/md";
 import axios from "axios";
 import Updatedata from './components/Updatedata';
 
+// Set the default base URL for axios
 axios.defaults.baseURL = "http://localhost:5000/"
 
 function App() {
+  // State variables for controlling the add and edit sections, form data, and fetched data
   const [addSection, setAddsection] = useState(false);
   const [editSection, setEditSection] = useState(false);
   const [formdata, setFormdata] = useState({
@@ -23,9 +24,11 @@ function App() {
   })
   const [dataList, setDataList] = useState([]);
 
+  // Handle input changes in the form
   const handleonchange = (e) => {
     const { value, name } = e.target
     console.log(value, name);
+    // Update formdata state using the previous state
     setFormdata((preve) => {
       return {
         ...preve,
@@ -34,6 +37,7 @@ function App() {
     })
   }
 
+  // Handle form submission for adding data
   const handelSumit = async (e) => {
     e.preventDefault()
     const data = await axios.post("/add", formdata)
@@ -45,6 +49,7 @@ function App() {
     }
   }
 
+  // Fetch data from the server
   const getfetchdata = async () => {
     const data = await axios.get("/")
     console.log(data)
@@ -52,10 +57,12 @@ function App() {
       setDataList(data.data.data)
   }
 
+  // Fetch data when the component mounts
   useEffect(() => {
     getfetchdata()
   }, [])
 
+  // Handle data deletion
   const handeldelete = async (id) => {
     const data = await axios.delete("/delete/" + id)
     if (data.data.success) {
@@ -64,18 +71,22 @@ function App() {
     }
   }
 
+  // Handle form submission for updating data
   const handleUpdate = async (e) => {
-e.preventDefault()
-const data = await axios.put("/update/",formdataEdit)
-if (data.data.success) {
-  getfetchdata()
-  alert(data.data.message)
-  setEditSection(false)
-}
+    e.preventDefault()
+    // Send a PUT request to update data
+    const data = await axios.put("/update/", formdataEdit)
+    if (data.data.success) {
+      getfetchdata()
+      alert(data.data.message)
+      setEditSection(false)
+    }
   }
 
-  const handelonchange = (e)=>{
-    const { value, name } = e.target    
+// Handle input changes in the edit form
+  const handelonchange = (e) => {
+    const { value, name } = e.target
+    // Update formdataEdit state using the previous state
     setFormdataEdit((preve) => {
       return {
         ...preve,
@@ -84,12 +95,13 @@ if (data.data.success) {
     })
   }
 
-  const handeledit = (e) =>{
+// Open the edit section and set the form data for editing
+  const handeledit = (e) => {
     console.log(e);
     setFormdataEdit(e)
     setEditSection(true)
   }
-  
+
   return (
     <>
       <div className="container">
@@ -101,7 +113,7 @@ if (data.data.success) {
               handleSumit={handelSumit}
               handleonchange={handleonchange}
               handelclos={() => setAddsection(false)}
-              rest={formdata}
+
             />
           )
         }
@@ -136,7 +148,7 @@ if (data.data.success) {
                       <td>{e.email}</td>
                       <td>{e.mobile}</td>
                       <td>
-                        <button className='btn btn-edit' onClick={()=>handeledit(e)}>Edit</button>
+                        <button className='btn btn-edit' onClick={() => handeledit(e)}>Edit</button>
                         <button className='btn btn-delete' onClick={() => handeldelete(e._id)}>Delete</button>
                       </td>
                     </tr>
