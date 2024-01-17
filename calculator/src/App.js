@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   const [value, setValue] = useState("");  
-
+//this is the handel function
   const handleEqualClick = () => {
     try {
       setValue(eval(value));
