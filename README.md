@@ -18,3 +18,8 @@ For each displayed data item, an "Edit" button is provided. Clicking on this but
 Delete Button Section:
 
 Adjacent to each displayed data item, a "Delete" button is available. To remove a specific item, simply click on the "Delete" button, initiating the deletion process.
+
+CALCULATOR
+
+![image](https://github.com/neerajkumarroy/All_React_Project_With_Nodejs_And_mongoDB/assets/148259510/eb589210-b231-437b-a57e-43504342b1eb)
+
