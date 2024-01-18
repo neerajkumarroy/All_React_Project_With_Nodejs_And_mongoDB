@@ -1,18 +1,21 @@
+/* eslint no-eval: 0 */
 import { useState } from 'react';
 import './App.css';
 
 function App() {
   const [value, setValue] = useState("");  
-//this is the handel function
+
   const handleEqualClick = () => {
-    try {
+    if (value.startsWith("/") || value.startsWith("*") || value.startsWith("+") ||value.startsWith("-") ||value.startsWith(".")
+     || value.endsWith("/") || value.endsWith("*") ||value.endsWith("+") || value.endsWith("-") ||value.endsWith(".") ) {
+      window.alert("Invalid operation. Please enter a valid expression.");
+      setValue("")
+    } else {
       setValue(eval(value));
-    } catch (error) {
-      window.alert("Invalid operation. Please enter a valid expression.");      
-      setValue("");
     }
-  };
- 
+  }
+  
+  
   return (
     <div className='container'>
       <div className='calculator'>
@@ -54,6 +57,6 @@ function App() {
       </div>
     </div>
   );
-}
 
+  }
 export default App;
