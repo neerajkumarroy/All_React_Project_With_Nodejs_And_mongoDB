@@ -5,6 +5,7 @@ import './App.css';
 function App() {
   const [value, setValue] = useState("");  
 
+  //This is the Handel Equal Button
   const handleEqualClick = () => {
     if (value.startsWith("/") || value.startsWith("*") || value.startsWith("+") ||value.startsWith("-") ||value.startsWith(".")
      || value.endsWith("/") || value.endsWith("*") ||value.endsWith("+") || value.endsWith("-") ||value.endsWith(".") ) {

@@ -5,7 +5,7 @@ const imagebase64 = async (file) => {
   
     // Asynchronously read the contents of the file as a Data URL
     await reader.readAsDataURL(file);
-  
+    
     // Create a Promise to handle the asynchronous result of reading the file
     const data = new Promise((resolve, reject) => {
       // Set up a callback for when the file reading is successful
