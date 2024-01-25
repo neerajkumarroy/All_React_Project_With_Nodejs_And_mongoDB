@@ -1,50 +1,28 @@
-// App.js
 import React from 'react';
-import { Container } from 'react-bootstrap';
-import './App.css';
 import Nav from './components/Nav';
 import { BrowserRouter } from 'react-router-dom';
+import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-    <div className='container-fluid'>
-      <div className='App'>
-        
-          <div className='row'>
-            <div className='col-12' id="navbar">
-              <h1>This is my First Bootstrap website</h1>
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-12' id='menu'>
-            <Nav />
-            </div>
-          </div>
-          <div className='row'>
-            <div className='col-8' id='contant'>
-              <h6>This is my First Bootstrap website This is my First Bootstrap website This is
-                my First Bootstrap website This is my First Bootstrap website This is my First Bootstrap website
-                This is my First Bootstrap website This is my First Bootstrap website This is
-                my First Bootstrap website This is my First Bootstrap website This is my First Bootstrap website
-                This is my First Bootstrap website This is my First Bootstrap website This is
-                my First Bootstrap website This is my First Bootstrap website This is my First Bootstrap website</h6>
-            </div>
-            <div className='col-4' id='slider'>
-              <Nav />
-            </div>
-          </div>
-          <div className='row'id='footer'>
-            <div className='col-12'>
-              @copyright 2024.
-            </div>
-          </div>
-        </div>
 
+    <div className='container'>
+      <div className='row'>
+        <div className='col-md-3 m-lg-auto orange'>
+          <p>In a groundbreaking discovery, scientists have identified a new exoplanet, named Kepler-452b,
+            with potential habitability. Situated in the habitable zone of its star, Kepler-452b shares similarities
+            with Earth, raising hopes for extraterrestrial life. Meanwhile,
+            global leaders convened to address the escalating climate crisis, proposing ambitious targets to</p>
         </div>
-    </BrowserRouter>
-    
+        <div className='col-md-4 green'>
+        <p>In a groundbreaking discovery, scientists have identified a new exoplanet, named Kepler-452b,
+            with potential habitability. Situated in the habitable zone of its star
+            </p>
+        </div>
+      </div>  
+    </div>
+
   );
-}
+} 
 
 export default App;

@@ -1,20 +1,29 @@
-body{
-background: gray;
+.container{
+border: 2px solid black;
+}
+.row{
+  border: 1px solid orangered;
 
 }
-#navbar{
+.pink{
+background-color: pink;
+}
+.orange{
 background-color: orange;
 }
-#menu{
-  background-color: pink;
+.blue{
+background-color: blue;
+color: white;
 }
-#contant{
+.green{
+  background-color: yellowgreen;
+} 
+
+.Nav ul li{
+display: block;
 
 }
-#slider{
-  background-color: lightblue;
-}
-#footer{
-  background-color: rgb(63, 62, 60);
-
+  .Nav ul li a {
+    text-decoration: none;
+  color: rgb(172, 13, 13);
 }

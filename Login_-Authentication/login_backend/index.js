@@ -1,20 +1,21 @@
-require("./config");
-const Admin = require("./schema");
+require("./DB/config");
 const express = require("express");
 const app = express();
-const StuSignup = require("./Signupschema");
+const StuSignup = require("./DB/Signupschema");
+const LoginSchema = require("./DB/schema");
 const cors = require('cors');
 
 //Login API
 app.use(cors());
 app.use(express.json());
-app.post("/data", async (req, resp) => {
-    if (req.body.username && req.body.password) {
-        // console.log(req.body.email)
+
+app.post("/login", async (req, resp) => {
+    if (req.body.email && req.body.password) {
         let payload = req.body;
-        let data = await StuSignup.findOne(payload).select("-password");
+        let data = await LoginSchema.findOne(payload).select("-password")
         if (data) {
             resp.send(data);
+            data = await data.save();
         } else {
             resp.send({ result: "Please Enter Valide emailid and passsword" })
         }

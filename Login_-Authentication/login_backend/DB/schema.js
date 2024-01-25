@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const loginSchema = new mongoose.Schema({
-    email:String,
-    password:String
+    email: String,
+    password: String
 })
 
-module.exports = mongoose.model("students",loginSchema);
+module.exports = mongoose.model("students", loginSchema);
