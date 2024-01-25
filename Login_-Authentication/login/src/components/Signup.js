@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -55,8 +55,9 @@ const Signup = () => {
       </div>
 
       <button type="submit" onClick={handelSignup} >Sign Up</button>
+      
 
-    </div>
+    </div>                                                                    
   );
 };
 

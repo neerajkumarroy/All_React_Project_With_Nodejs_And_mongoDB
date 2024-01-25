@@ -1,9 +1,9 @@
 
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [Email_id, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const Navigate = useNavigate();
 
@@ -12,16 +12,15 @@ const Login = () => {
     const auth = localStorage.getItem('user');
     if(auth)
     {
-      Navigate('/pfrofile')
+      Navigate('/profile')
     }
   })
 
 
-  const handelLogin = async () => {
-    console.log(email, password);
-    let result = await fetch('http://localhost:4000/data', {
+  const handelLogin = async () => {    
+    let result = await fetch('http://localhost:4000/login', {
       method: 'post',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ Email_id, password }),
       headers: {
         'Content-type': 'application/json'
       }
@@ -29,7 +28,7 @@ const Login = () => {
 
     result = await result.json();
         console.warn(result);
-        if(result.email)
+        if(result.Email_id)
         {
             localStorage.setItem("user",JSON.stringify(result))
             Navigate('/profile')
@@ -43,14 +42,15 @@ const Login = () => {
 
       <div className="login-div">
         <label>UserEmail:</label>
-        <input type="text" id="password" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type="text" id="password" value={Email_id} onChange={(e) => setEmail(e.target.value)} />
       </div>
 
       <div className="login-div">
         <label>Password:</label>
         <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
-
+    <Link  className= "forgotpassword" to="/forgot">Forgot Password</Link>
+       {/* <a className="forgot" href="#">Forgot Password</a> */}
       <button type="submit" onClick={handelLogin} >Login</button>
 
     </div>

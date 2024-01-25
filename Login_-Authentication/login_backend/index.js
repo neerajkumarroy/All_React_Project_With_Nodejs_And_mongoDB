@@ -10,20 +10,25 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/login", async (req, resp) => {
-    if (req.body.email && req.body.password) {
-        let payload = req.body;
-        let data = await LoginSchema.findOne(payload).select("-password")
-        if (data) {
-            resp.send(data);
-            data = await data.save();
-        } else {
-            resp.send({ result: "Please Enter Valide emailid and passsword" })
-        }
+    if (req.body.Email_id && req.body.password) {        
+      let payload = {
+        Email_id: req.body.Email_id,
+        password: req.body.password
+      };     
+  
+      let data = await StuSignup.findOne(payload);
+      console.log(data);
+  
+      if (data) {
+        resp.send(data);
+      } else {
+        resp.send({ result: "Please Enter Valid email id and password" });
+      }
     } else {
-        resp.send({ result: "Please Enter Valide emailid and passsword" })
+      resp.send({ result: "Please Enter Valid email id and password" });
     }
-
-})
+  });
+  
 
 //Signup API
 app.post("/signup", async (req, resp) => {
