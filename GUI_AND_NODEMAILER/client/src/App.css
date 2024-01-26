@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: aliceblue;
+}
+
+.container {
+  padding: 10px;
+  max-width: fit-content;
+  margin: 50px auto;
+}
+.fcontainer{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.fcontainer form {
+  width: 392px;
+  background-color: white;
+  display: flex;
+  padding: 50px 40px;
+  flex-direction: column;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+}
+.fcontainer form label {
+  font-size: 15px;
+}
+
+.fcontainer form input {
+  font-size: 18px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.fcontainer form button {
+  background-color: royalblue;
+  font-weight: 500;
+  margin-top: 15px; 
+  height: 30px;
+  border: none;
+  border-radius: 4px
+}
+.fcontainer form button:hover{
+background-color: green;
+color: red;
+font-weight: bolder;
+}
+.fcontainer form .close-btn { 
+  margin-left: auto;
+  font-size: 18px;
+  width: 21px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid rgb(17, 17, 17);
+  background-color: red;
+}
+::placeholder{
+  font-size: 13px;
+}
