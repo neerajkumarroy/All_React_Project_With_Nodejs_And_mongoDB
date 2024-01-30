@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { MdClose } from "react-icons/md";
 import './App.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     const [forgotPassword, setForgotPassword] = useState(true);
@@ -11,6 +13,14 @@ function App() {
         const email = document.getElementById("email").value;
         const subject = document.getElementById("subject").value;
         const message = document.getElementById("message").value;
+
+        if(email || subject || message)
+        {
+            toast.success("Email send Successfully")
+        }else
+        {
+            toast.error("please enter valide Email-id")
+        }
    
 
         fetch("http://localhost:7000/sendemail", {
@@ -51,6 +61,7 @@ function App() {
                     </form>
                 </div>
             )}
+            <ToastContainer />
         </div>
     );
 }
