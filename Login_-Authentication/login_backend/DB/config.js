@@ -1,2 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://demo1:demo1@cluster0.zh42dct.mongodb.net/college')
+require("dotenv").config();
+// console.log(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONGODB_URI);

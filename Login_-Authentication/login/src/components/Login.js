@@ -50,7 +50,7 @@ const Login = () => {
         <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
     <Link  className= "forgotpassword" to="/forgot">Forgot Password</Link>
-       {/* <a className="forgot" href="#">Forgot Password</a> */}
+       
       <button type="submit" onClick={handelLogin} >Login</button>
 
     </div>
