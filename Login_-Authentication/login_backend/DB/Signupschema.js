@@ -1,21 +1,21 @@
 const mongoose = require("mongoose");
 const Signupschema = new mongoose.Schema({
-    username:{
-        type:String,
-        require:true
+    username: {
+        type: String,
+        require: true
     },
-    Email_id:{
-        type:String,
-        require:true,
-        unique:[true,"This Email is already present..!"],
+    Email_id: {
+        type: String,
+        require: true,
+        unique: [true, "This Email is already present..!"],
 
     },
-    password:{
-        type:String,
-        require:true,
-        unique:[true,"this password is already present"]
+    password: {
+        type: String,
+        require: true,
+
     }
 })
 
-const Signup = mongoose.model('studentsignups',Signupschema);
+const Signup = mongoose.model('studentsignups', Signupschema);
 module.exports = Signup;

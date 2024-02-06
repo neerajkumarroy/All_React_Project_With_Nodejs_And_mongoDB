@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { MdClose } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { useNavigate } from 'react-router-dom';
 
 
 function App() {
-    const [emailid, setEmailid] = useState("");
+    const [emailid, setEmailid] = useState("");    
+
     const Navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,13 +27,21 @@ function App() {
             },
             body: JSON.stringify({ email: emailid })
         })
+        
+
+        await fetch("http://localhost:8000/update", {
+            method: 'PUT',
+            body: JSON.stringify({ email: emailid }),
+            headers: {
+                'Content-type': 'application/json',
+            }
+        });
     };
 
-    const handleFpassword = () => {       
+    const handleFpassword = () => {
         Navigate("/")
 
     }
-
     return (
         <div className="container">
             <h5 className='title'>Send OTP To The Email Account</h5>
@@ -49,10 +57,10 @@ function App() {
                         value={emailid}
                         onChange={(e) => setEmailid(e.target.value)}
                     />
-                    <button className="btn" type="submit" >Send OTP</button>
+                    <button className="btn" type="submit" >Send Password</button>
                 </form>
             </div>
-            <ToastContainer style={{fontSize:15}}/>
+            <ToastContainer style={{ fontSize: 15 }} />
         </div>
     );
 }

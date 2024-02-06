@@ -6,15 +6,16 @@ function Nav() {
   const Navigate = useNavigate();
   const logout = () =>{
     localStorage.clear();
-    Navigate('/login')
+    Navigate('/')
   }
+  
   return (
     <div>
       {
         auth ?
           <ul className="nav-ul">
             <li className="li"><Link to="/profile">Profile</Link></li>
-            <li className="li"> <Link onClick={logout} to="/signup">Logout ({JSON.parse(auth).email}) </Link></li>
+            <li className="li"> <Link onClick={logout} to="/">Logout ({JSON.parse(auth).name}) </Link></li>
               
           </ul>
           :

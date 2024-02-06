@@ -14,10 +14,9 @@ function App() {
         <Nav />
         <Routes>
           <Route path='/' element={<h1><Login /></h1>} />
-          <Route path='/signup' element={<h1><Signup /></h1>} /> 
-          <Route path='/profile' element={<h1><Profile /></h1>} />  
-          <Route path='/forgot' element={<h1><Forgotpassword /></h1>} />      
-
+          <Route path='/signup' element={<h1><Signup /></h1>} />
+          <Route path='/profile' element={<h1><Profile /></h1>} />
+          <Route path='/forgot' element={<h1>< Forgotpassword /></h1>} />
         </Routes>
       </BrowserRouter>
 
