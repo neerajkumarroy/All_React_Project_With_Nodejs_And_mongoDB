@@ -16,6 +16,5 @@ const Signupschema = new mongoose.Schema({
 
     }
 })
-
 const Signup = mongoose.model('studentsignups', Signupschema);
 module.exports = Signup;

@@ -16,16 +16,14 @@ app.use(express.json());
 // Call generateotp function
 let password = rendompass();
 
+//Login API
 app.post("/login", async (req, resp) => {
   if (req.body.Email_id && req.body.password) {
     let payload = {
       Email_id: req.body.Email_id,
       password: req.body.password
     };
-
-    let data = await StuSignup.findOne(payload);
-    console.log(data);
-
+    let data = await StuSignup.findOne(payload); 
     if (data) {
       resp.send(data);
     } else {
@@ -56,52 +54,57 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post("/password", async (req, res) => {
-  const { email } = req.body;
-  const password = new PassSchema({ email: email });
-  const savePassword = await password.save();
-  console.log(savePassword);
+  await StuSignup.findOne({ Email_id: req.body.email }).then(async (response) => {
+    if (response !== null) {
+      const { email } = req.body;
+      const password = new PassSchema({ email: email });
+      const savePassword = await password.save();
+      res.send(savePassword)
 
+      // Define the email options
+      const mailOptions = {
+        from: process.env.USER_EMAIL,
+        to: email,
+        subject: "This is Your OTP",
+        html: `<p>Your OTP is: ${password}</p>`
+      };
 
-
-  // Define the email options
-  const mailOptions = {
-    from: process.env.USER_EMAIL,
-    to: email,
-    subject: "This is Your OTP",
-    html: `<p>Your OTP is: ${password}</p>`
-  };
-
-  // Send the email
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: "Failed to send OTP" });
-    } else {
-      console.log("Email sent:", info.response);
-      res.status(200).json({ success: true, message: "OTP sent successfully" });
+      // Send the email
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error(error);
+          res.status(500).json({ success: false, message: "Failed to send OTP" });
+        } else {
+          console.log("Email sent:", info.response);
+          res.status(200).json({ success: true, message: "OTP sent successfully" });
+        }
+        
+      });
     }
-  });
+    else{
+      res.status(400).send({success:true, message:"Please Enter the registerd email id"})
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+
+
 });
 
-// This is the update api
-
-
-
+// This is the update API
 app.put("/update", async (req, resp) => {
   StuSignup.findOne({ Email_id: req.body.email }).then(async (response) => {
     if (response) {
-      console.log(response);
       let updatedUser = {
         username: response.username,
         Email_id: response.Email_id,
         password: password
       };
 
-      await StuSignup.updateOne({ Email_id: req.body.email }, updatedUser); 
-      console.log(updatedUser);
+      await StuSignup.updateOne({ Email_id: req.body.email }, updatedUser);
       resp.send(updatedUser);
     } else {
-      resp.send({success:false, message:"Please Enter valide Email-Id"} );
+      resp.send({ success: false, message: "Please Enter valide Email-I" });
     }
   }).catch((error) => {
     resp.status(400).send(error);

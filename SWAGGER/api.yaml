@@ -1,0 +1,116 @@
+swagger: "2.0"
+info:
+ title: This is my Firest Swagger API
+ description: This is my crud api documentation made by me.
+ version: 1.0
+ contact: 
+  email: onetech767@gmail.com
+liscence:
+ name: Apache 2.0
+ url: "http://apache.org/" 
+server:
+ -url: "http://localhost:5000/"
+ description: This is my local server
+ -url: "http://company.com/"
+ description: This is my company server
+
+schemes: [http,https]
+
+paths:
+# Returns a String
+ /strings:
+  get:
+   summary: Returns A String
+   description: It is just returing a demo string
+   responses:
+    200:
+     description: Success
+     schema:
+      type: string
+      example: "A Demo String" 
+    400:
+     description: User Error
+    500:
+     description: Internal Server Error
+
+#Returns a Objects
+ /user:
+  get:
+   summary: Returns a single Object
+   description: It is just returing a demo Object
+   responses:
+    200:
+     description: Success
+     schema:
+      type: object
+      properties:
+       id:
+        type: integer
+       name:
+        type: string
+       age: 
+        type: integer 
+
+#Returning Array of Users
+ /users:
+  get:
+   summary: Returning Array of Users
+   description: Array Return
+   responses:
+    200:
+     description: Success
+     schema:
+      type: array
+      items: 
+       type: object
+       properties:
+        id: 
+         type: integer
+        name:
+         type: string
+        age:
+         type: integer  
+
+#Sending Data through path
+ /users/{userId}:
+  get:
+   summary: Returns array of users
+   description: Success  
+   parameters:
+    - name: userId
+      in: path
+      required: true
+      schema:
+       type: integer
+   responses: 
+    200:
+     description: Success      
+       
+#Post json/body
+  /add:
+  post:
+    summary: Posting Data.
+    consumes:
+      - application/json
+    parameters:
+      - in: body
+        name: user
+        description: The user to create.
+        schema:
+          type: object
+          required:
+            - Name
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            age:
+              type: integer
+    responses:
+      200:
+        description: OK      
+      404:
+        description: User Error
+      500:
+        description: Internal Server Error      

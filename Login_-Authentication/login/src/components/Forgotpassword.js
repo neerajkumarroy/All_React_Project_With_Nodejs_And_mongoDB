@@ -4,7 +4,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-
 function App() {
     const [emailid, setEmailid] = useState("");    
 
@@ -13,35 +12,41 @@ function App() {
         e.preventDefault();
         setEmailid("")
 
-        if (emailid) {
-            toast.success("OTP send Successfully");
-        } else {
+        if (!emailid) {
             toast.error("Please enter a valid Email address");
             return;
         }
 
-        await fetch("http://localhost:8000/password", {
+        const response = await fetch("http://localhost:8000/password", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({ email: emailid })
-        })
-        
-
-        await fetch("http://localhost:8000/update", {
-            method: 'PUT',
-            body: JSON.stringify({ email: emailid }),
-            headers: {
-                'Content-type': 'application/json',
-            }
         });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Email exists, proceed to send OTP and update database
+            toast.success("OTP sent Successfully");
+            await fetch("http://localhost:8000/update", {
+                method: 'PUT',
+                body: JSON.stringify({ email: emailid }),
+                headers: {
+                    'Content-type': 'application/json',
+                }
+            });
+        } else {
+            // Email does not exist in the database
+            toast.error(data.message);
+        }
     };
 
     const handleFpassword = () => {
         Navigate("/")
-
     }
+
     return (
         <div className="container">
             <h5 className='title'>Send OTP To The Email Account</h5>
