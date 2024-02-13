@@ -1,0 +1,134 @@
+swagger: "2.0"
+info:
+ title: This is my Firest Swagger API
+ description: This is my crud api documentation made by me.
+ version: 1.0
+ contact: 
+  email: onetech767@gmail.com
+liscence:
+ name: Apache 2.0
+ url: "http://apache.org/" 
+server:
+ -url: "http://localhost:5000/"
+ description: This is my local server
+ -url: "http://company.com/"
+ description: This is my company server
+
+schemes: [http,https]
+
+paths:
+# Returns Data
+ /list:
+  get:
+   summary: Returns A all Data
+   description: This API provide the all Data
+   responses:
+    200:
+     description: Success
+     schema:
+      type: string
+      example: "All Good" 
+    400:
+     description: User Error
+    500:
+     description: Internal Server Error
+
+#Post json/body
+ /create:
+  post:
+    summary: Add Data.
+    consumes:
+      - application/json
+    parameters:
+      - in: body
+        name: user
+        description: The user to create.
+        schema:
+          type: object
+          required:
+            - Name
+          properties:
+            name:
+              type: string
+            password:
+              type: string
+            email:
+              type: string
+            phone:
+             type: number
+    responses:
+      200:
+        description: OK      
+      404:
+        description: User Error
+      500:
+        description: Internal Server Error      
+
+#Sending Data through path
+ /update/{_id}:
+    put:
+      summary: "Update Product"
+      description: "Update product details by ID"
+      parameters:
+        - name: "_id"
+          in: "path"
+          description: "ID of the product to update"
+          required: true
+          type: "string"
+        - name: "body"
+          in: "body"
+          description: "Updated product data"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                description: "Name of the product"
+              price:
+                type: "number"
+                format: "float"
+                description: "Price of the product"
+              description:
+                type: "string"
+                description: "Description of the product"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+                description: "Update successful message"
+              data:
+                type: "object"
+                description: "Updated product data"
+        400:
+          description: "Bad Request"
+        404:
+          description: "Not Found"        
+#Delete data from the DataBase
+ /delete/{_id}:
+    delete:
+      summary: "Delete Product"
+      description: "Delete a product by ID"
+      parameters:
+        - name: "_id"
+          in: "path"
+          description: "ID of the product to delete"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+                description: "Deletion successful message"
+        404:
+          description: "Not Found"
+        500:
+          description: "Internal Server Error"          

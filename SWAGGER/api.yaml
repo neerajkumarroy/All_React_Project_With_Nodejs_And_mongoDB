@@ -87,30 +87,20 @@ paths:
      description: Success      
        
 #Post json/body
-  /add:
-  post:
-    summary: Posting Data.
-    consumes:
-      - application/json
-    parameters:
-      - in: body
-        name: user
-        description: The user to create.
-        schema:
-          type: object
-          required:
-            - Name
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-            age:
-              type: integer
-    responses:
-      200:
-        description: OK      
-      404:
-        description: User Error
-      500:
-        description: Internal Server Error      
+   /update/{_id}:
+    put:
+      summary: "Update Product"
+      description: "Update product details by ID"
+      parameters:
+        - name: "_id"
+          in: "path"
+          description: "ID of the product to update"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "Bad Request"
+        404:
+          description: "Not Found"
