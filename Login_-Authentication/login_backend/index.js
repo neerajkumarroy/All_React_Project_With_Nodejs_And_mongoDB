@@ -4,9 +4,9 @@ const nodemailer = require("nodemailer");
 const cors = require('cors');
 const express = require("express");
 const app = express();
-const StuSignup = require("./DB/Signupschema");
-const PassSchema = require("./DB/passwordschema")
-const rendompass = require("./DB/rendompass")
+const StuSignup = require("./models/Signupschema");
+const PassSchema = require("./models/passwordschema")
+const rendompass = require("./models/rendompass")
 const PORT = process.env.PORT || 4000; // Corrected port number
 
 // Login API
