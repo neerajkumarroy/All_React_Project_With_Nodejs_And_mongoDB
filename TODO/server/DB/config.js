@@ -1,7 +1,13 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://demo1:demo1@cluster0.zh42dct.mongodb.net/todo")
-.then(()=>{
-    console.log("connection is succesfull");
-}).catch((err) => {
-    console.log(err)
+require("dotenv").config();
+
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
+.then(() => {
+    console.log("Connection to MongoDB successful");
+})
+.catch((err) => {
+    console.error("Error connecting to MongoDB:", err);
+});

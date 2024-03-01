@@ -83,7 +83,7 @@ function App() {
     }
   }
 
-// Handle input changes in the edit form
+  // Handle input changes in the edit form
   const handelonchange = (e) => {
     const { value, name } = e.target
     // Update formdataEdit state using the previous state
@@ -95,7 +95,7 @@ function App() {
     })
   }
 
-// Open the edit section and set the form data for editing
+  // Open the edit section and set the form data for editing
   const handeledit = (e) => {
     console.log(e);
     setFormdataEdit(e)
@@ -136,7 +136,7 @@ function App() {
                 <th>Name</th>
                 <th>Email</th>
                 <th>P.Number</th>
-                <th></th>
+                <th>Operations</th>
               </tr>
             </thead>
             <tbody>
