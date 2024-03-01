@@ -4,8 +4,8 @@ require('dotenv').config();
 const express = require("express");
 const app = express();
 const cors = require("cors")
-const Employee = require("./DB/schema");
-const Products = require("./DB/products");
+const Employee = require("./models/schema.js");
+const Products = require("./models/products.js");
 const Jwt = require("jsonwebtoken");
 const SecretKey = process.env.KEY;
 const PORT = process.env.PORT || 6000;

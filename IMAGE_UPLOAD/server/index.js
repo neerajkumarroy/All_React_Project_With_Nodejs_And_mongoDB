@@ -1,6 +1,6 @@
-require("./config")
+require("./DB/config.js");
 const express = require("express");
-const ImageModel = require("./schema")
+const ImageModel = require("./models/schema.js")
 const PORT = process.env.PORT||6500;
 const cors = require("cors")
 const app = express();
