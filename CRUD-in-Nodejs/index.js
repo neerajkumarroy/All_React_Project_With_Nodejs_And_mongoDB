@@ -5,7 +5,7 @@ const YAML = require("yamljs");
 const swaggerJsDocs = YAML.load("./api.yaml");
 require("./config");
 const app =express();
-const port = process.env.PORT|5000;
+const port = process.env.PORT;
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerJsDocs));
 
 // POST API
