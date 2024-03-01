@@ -7,7 +7,7 @@ const app = express();
 const StuSignup = require("./models/Signupschema");
 const PassSchema = require("./models/passwordschema")
 const rendompass = require("./models/rendompass")
-const PORT = process.env.PORT || 4000; // Corrected port number
+const PORT = process.env.PORT || 4000; 
 
 // Login API
 app.use(cors());
